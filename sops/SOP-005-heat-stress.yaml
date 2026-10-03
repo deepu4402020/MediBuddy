@@ -1,0 +1,11 @@
+id: SOP-005
+title: Heat stress for outdoor exercise
+category: outdoor_exercise
+severity: high
+tags: [running, outdoor_exercise, hiking, cycling, sports]
+type: threshold
+when:
+  all:
+    - { metric: apparent_temperature, agg: max, window: user_window, op: ">=", value: 38 }
+guidance: >
+  Feels dangerously hot for sustained outdoor exertion. Reduce intensity, hydrate, and favor cooler hours.

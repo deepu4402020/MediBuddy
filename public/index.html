@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SOP Weather Safety</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 720px; margin: 2rem auto; padding: 0 1rem; }
+    #log { border: 1px solid #ccc; border-radius: 8px; padding: 1rem; min-height: 280px; background: #fafafa; }
+    .msg { margin: 0.75rem 0; }
+    .user { color: #036; }
+    .bot { color: #242; white-space: pre-wrap; }
+    form { display: flex; gap: 0.5rem; margin-top: 1rem; }
+    input[type=text] { flex: 1; padding: 0.5rem; }
+    details { margin-top: 0.5rem; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <h1>SOP Weather Safety</h1>
+  <div id="log"></div>
+  <form id="form">
+    <input type="text" id="input" maxlength="500" placeholder="Ask about weather safety…" autocomplete="off" />
+    <button type="submit">Send</button>
+  </form>
+  <script>
+    const sessionId = crypto.randomUUID();
+    const log = document.getElementById('log');
+    const form = document.getElementById('form');
+    const input = document.getElementById('input');
+
+    function append(role, text, trace) {
+      const wrap = document.createElement('div');
+      wrap.className = 'msg ' + role;
+      const p = document.createElement('div');
+      p.className = role;
+      p.textContent = (role === 'user' ? 'You: ' : 'Assistant: ') + text;
+      wrap.appendChild(p);
+      if (trace) {
+        const d = document.createElement('details');
+        d.innerHTML = '<summary>Trace</summary><pre>' + JSON.stringify(trace, null, 2) + '</pre>';
+        wrap.appendChild(d);
+      }
+      log.appendChild(wrap);
+      log.scrollTop = log.scrollHeight;
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const message = input.value.trim();
+      if (!message) return;
+      append('user', message);
+      input.value = '';
+      const res = await fetch('/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sessionId, message }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        append('bot', data.detail || 'Error', null);
+        return;
+      }
+      append('bot', data.reply, data.trace);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+id: SOP-006
+title: Heat exposure for elderly and children
+category: vulnerable
+severity: high
+tags: [elderly, children, terrace, outdoor_rest]
+type: threshold
+when:
+  all:
+    - { metric: apparent_temperature, agg: max, window: user_window, op: ">=", value: 35 }
+guidance: >
+  Heat stress risk is elevated for older adults and young children. Limit time outdoors in direct sun and ensure cooling breaks.

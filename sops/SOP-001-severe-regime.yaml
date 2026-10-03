@@ -1,0 +1,15 @@
+id: SOP-001
+title: Severe weather regime
+category: global
+severity: critical
+tags: ["*"]
+type: threshold
+when:
+  any:
+    - { metric: precipitation, agg: sum, window: next_24h, op: ">=", value: 50 }
+    - { metric: weather_code, agg: max, window: next_24h, op: "in", value: [63, 65, 66, 67, 95, 96, 99] }
+    - { metric: pressure_msl, agg: delta, window: next_24h, op: "<=", value: -6 }
+supersedes: [SOP-002]
+guidance: >
+  Conditions suggest a severe weather regime (heavy rain, storms, or sharp pressure fall — a proxy, not a named system).
+  Postpone non-essential outdoor travel and exposure until conditions improve.

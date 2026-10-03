@@ -1,0 +1,11 @@
+id: SOP-011
+title: Air travel and thunderstorms at endpoints
+category: travel
+severity: caution
+tags: [air_travel]
+type: threshold
+when:
+  all:
+    - { metric: weather_code, agg: max, window: user_window, op: "in", value: [95, 96, 99] }
+guidance: >
+  Thunderstorms at origin or destination can disrupt flights. Monitor airline updates and allow buffer time.

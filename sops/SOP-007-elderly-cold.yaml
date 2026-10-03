@@ -1,0 +1,11 @@
+id: SOP-007
+title: Cold exposure for elderly and children
+category: vulnerable
+severity: caution
+tags: [elderly, children, outdoor_rest]
+type: threshold
+when:
+  all:
+    - { metric: temperature_2m, agg: min, window: user_window, op: "<=", value: 5 }
+guidance: >
+  Cold air increases discomfort and risk for vulnerable people. Dress in layers and limit prolonged exposure.

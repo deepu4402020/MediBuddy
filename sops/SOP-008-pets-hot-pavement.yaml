@@ -1,0 +1,11 @@
+id: SOP-008
+title: Pets on hot pavement
+category: pets
+severity: caution
+tags: [pets, dog_walk]
+type: threshold
+when:
+  all:
+    - { metric: apparent_temperature, agg: max, window: user_window, op: ">=", value: 32 }
+guidance: >
+  Surfaces can be hot enough to harm paw pads. Walk on grass when possible and shorten midday outings.

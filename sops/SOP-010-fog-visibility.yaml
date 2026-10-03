@@ -1,0 +1,11 @@
+id: SOP-010
+title: Fog and low visibility
+category: travel
+severity: caution
+tags: [road_trip, two_wheeler, driving]
+type: threshold
+when:
+  all:
+    - { metric: weather_code, agg: max, window: user_window, op: "in", value: [45, 48] }
+guidance: >
+  Fog or low visibility is expected. Use low-beam lights, increase following distance, and avoid sudden lane changes.

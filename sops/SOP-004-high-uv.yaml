@@ -1,0 +1,11 @@
+id: SOP-004
+title: High UV for outdoor exercise
+category: outdoor_exercise
+severity: caution
+tags: [running, outdoor_exercise, hiking, cycling]
+type: threshold
+when:
+  all:
+    - { metric: uv_index, agg: max, window: user_window, op: ">=", value: 8 }
+guidance: >
+  UV is high. Use shade, protective clothing, and sunscreen; shorten strenuous outdoor effort at peak UV.

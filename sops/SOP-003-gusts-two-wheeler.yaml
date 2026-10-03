@@ -1,0 +1,12 @@
+id: SOP-003
+title: Strong gusts for two-wheelers
+category: outdoor_exercise
+severity: high
+tags: [cycling, two_wheeler]
+type: threshold
+when:
+  all:
+    - { metric: wind_gusts_10m, agg: max, window: user_window, op: ">=", value: 40 }
+supersedes: [SOP-002]
+guidance: >
+  Strong gusts can push two-wheelers and reduce stability. Consider delaying the ride or choosing a sheltered route.

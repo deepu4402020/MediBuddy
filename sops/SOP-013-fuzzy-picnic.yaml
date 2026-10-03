@@ -1,0 +1,35 @@
+id: SOP-013
+title: Picnic and outing suitability
+category: leisure
+severity: caution
+tags: [picnic, outing]
+type: fuzzy
+rubric:
+  - Comfortable temperature for sitting outdoors
+  - Limited rain in the window
+  - Moderate wind for blankets and light items
+  - UV manageable for open shade
+metrics:
+  - temperature_2m
+  - precipitation
+  - wind_gusts_10m
+  - uv_index
+verdicts:
+  good:
+    severity: info
+    guidance: >
+      Conditions look reasonable for a picnic. Still pack a light layer and hydration.
+  mixed:
+    severity: caution
+    guidance: >
+      Mixed conditions — workable with shelter and flexible timing.
+  poor:
+    severity: high
+    guidance: >
+      Conditions look poor for an outdoor picnic; consider an indoor alternative or another day.
+vetoes:
+  - forbid: good
+    when:
+      any:
+        - { metric: precipitation, agg: sum, window: user_window, op: ">=", value: 8 }
+        - { metric: weather_code, agg: max, window: user_window, op: "in", value: [95, 96, 99, 63, 65, 67] }

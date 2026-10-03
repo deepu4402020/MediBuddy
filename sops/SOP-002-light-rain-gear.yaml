@@ -1,0 +1,12 @@
+id: SOP-002
+title: Light rain gear
+category: outdoor_exercise
+severity: info
+tags: [cycling, hiking, outdoor_exercise, two_wheeler]
+type: threshold
+when:
+  all:
+    - { metric: precipitation, agg: sum, window: user_window, op: ">=", value: 0.1 }
+    - { metric: precipitation, agg: sum, window: user_window, op: "<=", value: 5 }
+guidance: >
+  Light rain is possible. Wear a breathable rain layer and visibility aids; surfaces may be slick.

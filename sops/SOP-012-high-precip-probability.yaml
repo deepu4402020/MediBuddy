@@ -1,0 +1,11 @@
+id: SOP-012
+title: Travel with high precipitation probability
+category: travel
+severity: caution
+tags: [road_trip, travel, air_travel]
+type: threshold
+when:
+  all:
+    - { metric: precipitation_probability, agg: max, window: user_window, op: ">=", value: 70 }
+guidance: >
+  Rain is likely during your window. Pack rain gear and plan for slower road travel or connection buffers.

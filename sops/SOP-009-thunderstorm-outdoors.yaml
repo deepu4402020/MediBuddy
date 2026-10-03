@@ -1,0 +1,11 @@
+id: SOP-009
+title: Thunderstorm risk outdoors
+category: storm
+severity: critical
+tags: [hiking, sports, outdoor_exercise, cycling]
+type: threshold
+when:
+  all:
+    - { metric: weather_code, agg: max, window: user_window, op: "in", value: [95, 96, 99] }
+guidance: >
+  Thunderstorms are forecast in your window. Move indoors and avoid open areas, tall objects, and water.
